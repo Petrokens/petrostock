@@ -1,0 +1,23 @@
+{
+  "name": "petrokens-live-server",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "NSE India live stock data backend server for PetroKens",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "node-fetch": "^3.3.2",
+    "cors": "^2.8.5",
+    "memory-cache": "^0.2.0",
+    "socket.io": "^4.8.1"
+  },
+  "keywords": ["nse", "stock", "websocket", "real-time"],
+  "author": "PetroKens",
+  "license": "MIT"
+}
+
+
