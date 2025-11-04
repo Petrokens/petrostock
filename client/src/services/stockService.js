@@ -9,7 +9,7 @@ class StockService {
     this.socket = null;
     this.liveDataCallbacks = [];
     this.isConnectedToBackend = false;
-    this.backendUrl = 'http://localhost:3000';
+    this.backendUrl = 'https://petrostock.onrender.com';
     this.localStorageKey = 'petrokens_stock_data';
     this.subscribedStocks = [];
     this.connectionCallbacks = [];
