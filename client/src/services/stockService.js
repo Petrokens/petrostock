@@ -26,7 +26,7 @@ class StockService {
         data: data
       };
       localStorage.setItem(this.localStorageKey, JSON.stringify(cacheData));
-      console.log(`💾 Saved ${Object.keys(data).length} stocks to localStorage`);
+      console.log(`Saved ${Object.keys(data).length} stocks to localStorage`);
     } catch (error) {
       console.warn('Failed to save to localStorage:', error);
     }
@@ -67,10 +67,10 @@ class StockService {
             const cacheKey = `quote_${symbol}`;
             this.setCacheData(cacheKey, stockData);
           });
-          console.log(`📦 Loaded ${Object.keys(data).length} stocks from localStorage (${Math.floor(age / 60000)}m old)`);
+          console.log(`Loaded ${Object.keys(data).length} stocks from localStorage (${Math.floor(age / 60000)}m old)`);
           return data;
         } else {
-          console.log('🗑️ localStorage data too old, clearing...');
+          console.log('localStorage data too old, clearing...');
           localStorage.removeItem(this.localStorageKey);
         }
       }
@@ -94,7 +94,7 @@ class StockService {
       });
 
       this.socket.on('connect', () => {
-        console.log('✅ Connected to live backend server');
+        console.log('Connected to live backend server');
         this.isConnectedToBackend = true;
         
         // Notify all connection callbacks
@@ -108,18 +108,18 @@ class StockService {
         
         // If we have subscribed stocks, re-subscribe after reconnect
         if (this.subscribedStocks && this.subscribedStocks.length > 0) {
-          console.log(`🔄 Re-subscribing to ${this.subscribedStocks.length} stocks...`);
+          console.log(`Re-subscribing to ${this.subscribedStocks.length} stocks...`);
           this.socket.emit('subscribeStocks', this.subscribedStocks);
         }
       });
 
       this.socket.on('disconnect', () => {
-        console.log('❌ Disconnected from live backend');
+        console.log('Disconnected from live backend');
         this.isConnectedToBackend = false;
       });
 
       this.socket.on('priceUpdate', (updates) => {
-        console.log(`📊 Received ${updates.length} live update(s)`);
+        console.log(`Received ${updates.length} live update(s)`);
         
         // Enrich and cache all updates
         const enrichedUpdates = [];
@@ -170,12 +170,12 @@ class StockService {
       });
 
       this.socket.on('stockError', (error) => {
-        console.error(`❌ Stock error:`, error);
+        console.error(`Stock error:`, error);
       });
 
       this.socket.on('connect_error', (error) => {
-        console.warn('⚠️ Backend connection error:', error.message);
-        console.log('📦 Falling back to cached data');
+        console.warn('Backend connection error:', error.message);
+        console.log('Falling back to cached data');
         this.isConnectedToBackend = false;
       });
     } catch (error) {
@@ -187,23 +187,23 @@ class StockService {
   // Subscribe to stock updates
   subscribeToStocks(symbols) {
     if (!this.socket) {
-      console.warn('⚠️ Cannot subscribe - socket not initialized. Connecting first...');
+      console.warn('Cannot subscribe - socket not initialized. Connecting first...');
       // Wait for connection
       this.onConnection(() => {
         this.subscribedStocks = symbols;
-        console.log(`📡 Subscribing to ${symbols.length} stocks...`);
+        console.log(`Subscribing to ${symbols.length} stocks...`);
         this.socket.emit('subscribeStocks', symbols);
       });
       return;
     }
 
     if (!this.isConnectedToBackend) {
-      console.warn('⚠️ Cannot subscribe - not connected to backend. Will subscribe when connected...');
+      console.warn('Cannot subscribe - not connected to backend. Will subscribe when connected...');
       this.subscribedStocks = symbols;
       // Wait for connection
       this.onConnection(() => {
         if (this.subscribedStocks.length > 0) {
-          console.log(`📡 Subscribing to ${this.subscribedStocks.length} stocks...`);
+          console.log(`Subscribing to ${this.subscribedStocks.length} stocks...`);
           this.socket.emit('subscribeStocks', this.subscribedStocks);
         }
       });
@@ -211,7 +211,7 @@ class StockService {
     }
 
     this.subscribedStocks = symbols;
-    console.log(`📡 Subscribing to ${symbols.length} stocks...`);
+    console.log(`Subscribing to ${symbols.length} stocks...`);
     this.socket.emit('subscribeStocks', symbols);
   }
 
@@ -231,7 +231,7 @@ class StockService {
   // Request a single stock update
   requestStock(symbol) {
     if (!this.socket || !this.isConnectedToBackend) {
-      console.warn('⚠️ Cannot request stock - not connected to backend');
+      console.warn('Cannot request stock - not connected to backend');
       return;
     }
 
@@ -676,7 +676,7 @@ class StockService {
       // Log stats
       const liveCount = Object.values(result).filter(s => s.isLiveData).length;
       const pendingCount = symbols.length - liveCount;
-      console.log(`📊 Loaded ${symbols.length} stocks: ${liveCount} cached (previous), ${pendingCount} pending (waiting for real data)`);
+      console.log(`Loaded ${symbols.length} stocks: ${liveCount} cached (previous), ${pendingCount} pending (waiting for real data)`);
       
       // Real-time updates will come progressively via WebSocket
       return result;
@@ -705,7 +705,7 @@ class StockService {
       }
       
       // Wait for live data
-      console.log(`⏳ Waiting for live data for ${symbol}...`);
+      console.log(`Waiting for live data for ${symbol}...`);
       return {
         symbol: symbol,
         error: true,

@@ -14,7 +14,7 @@ const io = new Server(httpServer, {
   }
 });
 
-const API_KEY = 'eyJraWQiOiJaTUtjVXciLCJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3NjIzMDI2MDAsImlhdCI6MTc2MjIzNTQ0OSwibmJmIjoxNzYyMjM1NDQ5LCJzdWIiOiJ7XCJ0b2tlblJlZklkXCI6XCJiZWJiZjczOC1iMTJiLTRmM2YtYWM0Ni03ZGI3OTY0Y2Q4ODRcIixcInZlbmRvckludGVncmF0aW9uS2V5XCI6XCJlMzFmZjIzYjA4NmI0MDZjODg3NGIyZjZkODQ5NTMxM1wiLFwidXNlckFjY291bnRJZFwiOlwiNmQ1ZTZlZTgtYzcxZS00MjQ2LTk4MTctN2I3NGIxYmQyYTJkXCIsXCJkZXZpY2VJZFwiOlwiNGE1Y2U5ZDItMDc5NS01ZmY0LWE3ZWMtMWRlMjJmNDYyZjI1XCIsXCJzZXNzaW9uSWRcIjpcImJmMTM1YjE0LTAwYjEtNGRiNC05ZTFkLTEwYTI0Yzk0NWIxZlwiLFwiYWRkaXRpb25hbERhdGFcIjpcIno1NC9NZzltdjE2WXdmb0gvS0EwYkVtQk5acTk4a2RYRXdzbTFTWUJqM1ZSTkczdTlLa2pWZDNoWjU1ZStNZERhWXBOVi9UOUxIRmtQejFFQisybTdRPT1cIixcInJvbGVcIjpcIm9yZGVyLWJhc2ljLGxpdmVfZGF0YS1iYXNpYyxub25fdHJhZGluZy1iYXNpYyxvcmRlcl9yZWFkX29ubHktYmFzaWMsYmFja190ZXN0XCIsXCJzb3VyY2VJcEFkZHJlc3NcIjpcIjExNS45Ny4yNTMuMjQxLDE2Mi4xNTguMjM1LjExOSwzNS4yNDEuMjMuMTIzXCIsXCJ0d29GYUV4cGlyeVRzXCI6MTc2MjMwMjYwMDAwMH0iLCJpc3MiOiJhcGV4LWF1dGgtcHJvZC1hcHAifQ.c63NgS2W_wiENi_3-F6AopALifpc9R_UuFMQAgjq_JyqFs7zqvEuH8q8yaHneL1Ikhd9kbNNsxi0yFetmMU2Ig';
+const API_KEY = 'eyJraWQiOiJaTUtjVXciLCJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3NjI5MDc0MDAsImlhdCI6MTc2Mjg1ODk3NSwibmJmIjoxNzYyODU4OTc1LCJzdWIiOiJ7XCJ0b2tlblJlZklkXCI6XCI1ODc3MTI0MC1hMTQxLTQ4ODQtYmE3YS1iYjVhODNmNzYyZmFcIixcInZlbmRvckludGVncmF0aW9uS2V5XCI6XCJlMzFmZjIzYjA4NmI0MDZjODg3NGIyZjZkODQ5NTMxM1wiLFwidXNlckFjY291bnRJZFwiOlwiNmQ1ZTZlZTgtYzcxZS00MjQ2LTk4MTctN2I3NGIxYmQyYTJkXCIsXCJkZXZpY2VJZFwiOlwiNGE1Y2U5ZDItMDc5NS01ZmY0LWE3ZWMtMWRlMjJmNDYyZjI1XCIsXCJzZXNzaW9uSWRcIjpcImI2NTgyMjk4LTZiODctNDBkZS1iOTdiLTdkMWRmZmJmZWFlYlwiLFwiYWRkaXRpb25hbERhdGFcIjpcIno1NC9NZzltdjE2WXdmb0gvS0EwYkVtQk5acTk4a2RYRXdzbTFTWUJqM1ZSTkczdTlLa2pWZDNoWjU1ZStNZERhWXBOVi9UOUxIRmtQejFFQisybTdRPT1cIixcInJvbGVcIjpcIm9yZGVyLWJhc2ljLGxpdmVfZGF0YS1iYXNpYyxub25fdHJhZGluZy1iYXNpYyxvcmRlcl9yZWFkX29ubHktYmFzaWMsYmFja190ZXN0XCIsXCJzb3VyY2VJcEFkZHJlc3NcIjpcIjExNS45Ny4yNTMuMjQxLDE2Mi4xNTguMjM1LjcyLDM1LjI0MS4yMy4xMjNcIixcInR3b0ZhRXhwaXJ5VHNcIjoxNzYyOTA3NDAwMDAwfSIsImlzcyI6ImFwZXgtYXV0aC1wcm9kLWFwcCJ9.aNiMXTXn-U6e9nH1fDrYeGSuloHoDVZut5yAIeJgGvjn7sf3SV3XTdNzdoKHYwT6zi2-ZTqUlAxsFi5xIRkefQ';
 
 // In-memory cache for stock data
 const stockCache = new Map();
@@ -79,7 +79,7 @@ async function fetchInstrumentsList() {
   try {
     const csvUrl = 'https://growwapi-assets.groww.in/instruments/instrument.csv';
     
-    console.log(`📥 Downloading Instruments CSV from: ${csvUrl}`);
+    console.log(`Downloading Instruments CSV from: ${csvUrl}`);
     
     const response = await fetch(csvUrl, {
       headers: {
@@ -93,7 +93,7 @@ async function fetchInstrumentsList() {
     }
 
     const csvText = await response.text();
-    console.log(`✅ Downloaded CSV (${csvText.length} characters)`);
+    console.log(`Downloaded CSV (${csvText.length} characters)`);
     
     // Parse CSV
     const lines = csvText.split('\n');
@@ -114,7 +114,7 @@ async function fetchInstrumentsList() {
       throw new Error('CSV missing required columns: trading_symbol or name');
     }
 
-    console.log(`📊 CSV Headers: trading_symbol=${tradingSymbolIdx}, name=${nameIdx}, exchange=${exchangeIdx}, segment=${segmentIdx}`);
+    console.log(`CSV Headers: trading_symbol=${tradingSymbolIdx}, name=${nameIdx}, exchange=${exchangeIdx}, segment=${segmentIdx}`);
 
     // Helper function to parse CSV line handling quoted fields
     function parseCSVLine(line) {
@@ -166,12 +166,12 @@ async function fetchInstrumentsList() {
       
       // Log progress for large files
       if (count % 10000 === 0) {
-        console.log(`📊 Processed ${count} rows, found ${symbolToNameMap.size} NSE CASH instruments...`);
+        console.log(`Processed ${count} rows, found ${symbolToNameMap.size} NSE CASH instruments...`);
       }
     }
 
-    console.log(`📋 Parsed ${count} total instruments from CSV`);
-    console.log(`✅ Loaded ${symbolToNameMap.size} NSE CASH segment mappings (trading_symbol -> name)`);
+    console.log(`Parsed ${count} total instruments from CSV`);
+    console.log(`Loaded ${symbolToNameMap.size} NSE CASH segment mappings (trading_symbol -> name)`);
     
     if (symbolToNameMap.size > 0) {
       // Log a few examples with common stocks
@@ -182,14 +182,14 @@ async function fetchInstrumentsList() {
         .slice(0, 5);
       
       if (examples.length > 0) {
-        console.log(`📝 Examples: ${examples.join(', ')}`);
+        console.log(`Examples: ${examples.join(', ')}`);
       }
       return true;
     }
     
     throw new Error('No valid instrument mappings found');
   } catch (error) {
-    console.error(`❌ Error fetching instruments CSV:`, error.message);
+    console.error(`Error fetching instruments CSV:`, error.message);
     return false;
   }
 }
@@ -197,9 +197,9 @@ async function fetchInstrumentsList() {
 // Initialize instruments mapping on server start
 fetchInstrumentsList().then(success => {
   if (success) {
-    console.log(`✅ Instruments mapping loaded successfully`);
+    console.log(`Instruments mapping loaded successfully`);
   } else {
-    console.log(`⚠️ Instruments mapping not available - will use symbols as names`);
+    console.log(`Instruments mapping not available - will use symbols as names`);
   }
 });
 
@@ -210,7 +210,7 @@ async function fetchStockData(symbol) {
   
   // Return cached data if valid
   if (cached && (Date.now() - cached.timestamp) < CACHE_TTL) {
-    console.log(`📦 Using cached data for ${symbol}`);
+    console.log(`Using cached data for ${symbol}`);
     return cached.data;
   }
 
@@ -218,7 +218,7 @@ async function fetchStockData(symbol) {
     // Use Quote API for complete data (includes OHLC, volume, etc.)
     const quoteApiUrl = `https://api.groww.in/v1/live-data/quote?exchange=NSE&segment=CASH&trading_symbol=${symbol}`;
     
-    console.log(`🌐 Fetching ${symbol} from Groww Quote API...`);
+    console.log(`Fetching ${symbol} from Groww Quote API...`);
     
     const response = await fetch(quoteApiUrl, {
       headers: {
@@ -228,16 +228,16 @@ async function fetchStockData(symbol) {
       }
     });
 
-    console.log(`📡 Groww Quote API Response for ${symbol}: ${response.status} ${response.statusText}`);
+    console.log(`Groww Quote API Response for ${symbol}: ${response.status} ${response.statusText}`);
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.error(`❌ Quote API Error for ${symbol}: ${response.status} - ${errorText}`);
+      console.error(`Quote API Error for ${symbol}: ${response.status} - ${errorText}`);
       throw new Error(`API returned status ${response.status}`);
     }
 
     const data = await response.json();
-    console.log(`✅ Groww Quote API Response for ${symbol}:`, JSON.stringify(data).substring(0, 300));
+    console.log(`Groww Quote API Response for ${symbol}:`, JSON.stringify(data).substring(0, 300));
     
     if (data.status === 'SUCCESS' && data.payload) {
       const payload = data.payload;
@@ -258,7 +258,7 @@ async function fetchStockData(symbol) {
               if (key && value) ohlcData[key] = parseFloat(value);
             });
           } catch (e) {
-            console.log(`⚠️ Could not parse OHLC string for ${symbol}`);
+            console.log(`Could not parse OHLC string for ${symbol}`);
           }
         } else {
           ohlcData = payload.ohlc;
@@ -272,11 +272,11 @@ async function fetchStockData(symbol) {
       // If mapping doesn't have this symbol, try to refresh instruments list in background
       if (!symbolToNameMap.has(symbol) && symbolToNameMap.size === 0) {
         fetchInstrumentsList().catch(err => {
-          console.log(`⚠️ Could not refresh instruments list: ${err.message}`);
+          console.log(`Could not refresh instruments list: ${err.message}`);
         });
       }
       
-      console.log(`💰 Fetched ${symbol}: ₹${price}${companyName !== symbol ? ` (${companyName})` : ''}`);
+      console.log(`Fetched ${symbol}: ₹${price}${companyName !== symbol ? ` (${companyName})` : ''}`);
       
       const stockData = {
         symbol: symbol,
@@ -300,15 +300,15 @@ async function fetchStockData(symbol) {
 
       return stockData;
     } else {
-      console.error(`❌ Invalid Quote API response format for ${symbol}:`, JSON.stringify(data));
+      console.error(`Invalid Quote API response format for ${symbol}:`, JSON.stringify(data));
       throw new Error('Invalid API response format');
     }
   } catch (error) {
-    console.error(`❌ Error fetching ${symbol} from Quote API:`, error.message);
+    console.error(`Error fetching ${symbol} from Quote API:`, error.message);
     
     // Fallback to LTP API if Quote API fails
     try {
-      console.log(`🔄 Falling back to LTP API for ${symbol}...`);
+      console.log(`Falling back to LTP API for ${symbol}...`);
         const exchangeSymbol = `NSE_${symbol}`;
       const ltpApiUrl = `https://api.groww.in/v1/live-data/ltp?segment=CASH&exchange_symbols=${exchangeSymbol}`;
         
@@ -355,12 +355,12 @@ async function fetchStockData(symbol) {
         }
       }
     } catch (ltpError) {
-      console.error(`❌ LTP fallback also failed for ${symbol}:`, ltpError.message);
+      console.error(`LTP fallback also failed for ${symbol}:`, ltpError.message);
     }
     
     // Return cached data if available, even if expired
     if (cached) {
-      console.log(`📦 Returning expired cache for ${symbol}`);
+      console.log(`Returning expired cache for ${symbol}`);
       return cached.data;
     }
     
@@ -379,7 +379,7 @@ async function fetchMultipleStocks(symbols) {
         results.push(data);
       }
     } catch (error) {
-      console.error(`❌ Failed to fetch ${symbol}:`, error.message);
+      console.error(`Failed to fetch ${symbol}:`, error.message);
       // Continue with other symbols - don't fail entire batch
     }
     
@@ -392,11 +392,11 @@ async function fetchMultipleStocks(symbols) {
 
 // Socket.IO connection handling
 io.on('connection', (socket) => {
-  console.log(`✅ Client connected: ${socket.id}`);
+  console.log(`Client connected: ${socket.id}`);
 
   // Handle stock subscription
   socket.on('subscribeStocks', async (symbols) => {
-    console.log(`📊 Client ${socket.id} subscribed to ${symbols.length} stocks: ${symbols.slice(0, 5).join(', ')}${symbols.length > 5 ? '...' : ''}`);
+    console.log(`Client ${socket.id} subscribed to ${symbols.length} stocks: ${symbols.slice(0, 5).join(', ')}${symbols.length > 5 ? '...' : ''}`);
     
     // Fetch data progressively in batches
     const batchSize = 3; // Smaller batches to avoid rate limiting
@@ -404,14 +404,14 @@ io.on('connection', (socket) => {
       const batch = symbols.slice(i, i + batchSize);
       
       try {
-        console.log(`🔄 Fetching batch ${Math.floor(i/batchSize) + 1}/${Math.ceil(symbols.length/batchSize)}: ${batch.join(', ')}`);
+        console.log(`Fetching batch ${Math.floor(i/batchSize) + 1}/${Math.ceil(symbols.length/batchSize)}: ${batch.join(', ')}`);
         const stocksData = await fetchMultipleStocks(batch);
         
         if (stocksData.length > 0) {
           socket.emit('priceUpdate', stocksData);
-          console.log(`📤 Sent batch ${Math.floor(i/batchSize) + 1}: ${stocksData.length} stocks`);
+          console.log(`Sent batch ${Math.floor(i/batchSize) + 1}: ${stocksData.length} stocks`);
                         } else {
-          console.warn(`⚠️ No data returned for batch: ${batch.join(', ')}`);
+          console.warn(`No data returned for batch: ${batch.join(', ')}`);
         }
         
         // Delay between batches to avoid rate limiting
@@ -419,12 +419,12 @@ io.on('connection', (socket) => {
           await new Promise(resolve => setTimeout(resolve, 500));
         }
       } catch (error) {
-        console.error(`❌ Error fetching batch ${Math.floor(i/batchSize) + 1}:`, error.message);
+        console.error(`Error fetching batch ${Math.floor(i/batchSize) + 1}:`, error.message);
         // Continue with next batch
       }
     }
     
-    console.log(`✅ Finished processing subscription for ${symbols.length} stocks`);
+    console.log(`Finished processing subscription for ${symbols.length} stocks`);
   });
 
   // Handle single stock requests
@@ -432,7 +432,7 @@ io.on('connection', (socket) => {
     try {
       const data = await fetchStockData(symbol);
       socket.emit('priceUpdate', [data]);
-      console.log(`📤 Sent ${symbol} to ${socket.id}`);
+      console.log(`Sent ${symbol} to ${socket.id}`);
     } catch (error) {
       console.error(`Error fetching ${symbol}:`, error);
       socket.emit('stockError', { symbol, error: error.message });
@@ -440,7 +440,7 @@ io.on('connection', (socket) => {
   });
 
   socket.on('disconnect', () => {
-    console.log(`❌ Client disconnected: ${socket.id}`);
+    console.log(`Client disconnected: ${socket.id}`);
   });
 });
 
@@ -449,7 +449,7 @@ setInterval(async () => {
   const connectedSockets = await io.fetchSockets();
   
   if (connectedSockets.length > 0 && stockCache.size > 0) {
-    console.log(`🔄 Periodic update for ${connectedSockets.length} clients...`);
+    console.log(`Periodic update for ${connectedSockets.length} clients...`);
     
     // Get all cached symbols
     const symbols = Array.from(stockCache.keys());
@@ -464,7 +464,7 @@ setInterval(async () => {
         
         if (updates.length > 0) {
           io.emit('priceUpdate', updates);
-          console.log(`📡 Broadcasted ${updates.length} updates`);
+          console.log(`Broadcasted ${updates.length} updates`);
         }
       } catch (error) {
         console.error('Error in periodic update:', error);
@@ -479,11 +479,11 @@ const PORT = 3000;
 httpServer.listen(PORT, () => {
     console.log('');
     console.log('═══════════════════════════════════════════════');
-  console.log('  📈 LIVE STOCK DATA SERVER');
+  console.log('  LIVE STOCK DATA SERVER');
     console.log('═══════════════════════════════════════════════');
-    console.log(`  🚀 Server: http://localhost:${PORT}`);
-  console.log(`  🔌 WebSocket: Ready`);
-    console.log(`  ✅ API Key: Configured`);
+    console.log(`  Server: http://localhost:${PORT}`);
+  console.log(`  WebSocket: Ready`);
+    console.log(`  API Key: Configured`);
     console.log('');
   console.log('  Waiting for client connections...');
     console.log('═══════════════════════════════════════════════');

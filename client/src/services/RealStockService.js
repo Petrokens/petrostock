@@ -319,4 +319,4 @@ class RealStockService {
           }
         }
 
-        export default RealStockService;
+        export default RealStockService; 
