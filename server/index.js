@@ -284,7 +284,7 @@ async function fetchStockData(symbol) {
         last: price,
         chg: change,
         pchg: changePercent,
-        vol: parseInt(payload.volume || (payload.total_buy_quantity || 0) + (payload.total_sell_quantity || 0) || 0),
+        vol: parseInt(payload.volume || (payload.bid_quantity || 0) + (payload.offer_quantity || 0) || 0),
         high: parseFloat(payload.high_trade_range || ohlcData.high || payload.week_52_high || price * 1.02 || price),
         low: parseFloat(payload.low_trade_range || ohlcData.low || payload.week_52_low || price * 0.98 || price),
         open: parseFloat(ohlcData.open || payload.last_price || price),
